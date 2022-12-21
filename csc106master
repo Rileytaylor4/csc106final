@@ -1,2 +1,378 @@
-csc106
+var CurrentScene = 1; // 1 - splash, 2 - level 1,... 
+var score = 0;
+var spot_choice;
+var xSpots = [200,70,324,324,191,71,323,198,74,73,198,321];
+var ySpots = [200,130,350,267,350,350,197,271,271,202,129,128];
+
+var Button = function(config) {
+    this.x = config.x || 0;
+    this.y = config.y || 0;
+    this.width = config.width || 150;
+    this.height = config.height || 50;
+    this.label = config.label || "Click";
+    this.onClick = config.onClick || function() {};
+    this.color= config.color || color(0, 47, 255);
+};
+// CONFIGURATION FOR BUTTONS
+
+
+
+Button.prototype.draw = function() {
+    fill(this.color);
+    rect(this.x, this.y, this.width, this.height, 15);
+    fill(0, 0, 0);
+    textSize(19);
+    textAlign(LEFT, TOP);
+    text(this.label, this.x+14, this.y+this.height/4);
+};
+
+//DISPLAY OR DRAW BUTTON
+
+Button.prototype.isMouseInside = function() {
+    return mouseX > this.x &&
+           mouseX < (this.x + this.width) &&
+           mouseY > this.y &&
+           mouseY < (this.y + this.height);
+};
+
+//CHECK IF MOUSE IS INSIDE
+Button.prototype.handleMouseClick = function() {
+    if (this.isMouseInside()) {
+        this.onClick();
+    }
+};
+
+
+var startButton = new Button({
+    x: 126,
+    y: 264,
+    label: "Play",
+    color: color(12, 209, 19),
+    onClick: function() {
+        CurrentScene=2;
+        
+          
+        
+   //Start Button Configuration
+
+    }
+});
+
+
+
+var splash = function(){
+    fill(235, 218, 218);
+    background(89, 40, 40);
+    textSize(47);
+    text("Wack a Mole", 58, 72);
+    textSize(20);
+    text("By fallou and Riley",113,123);
+    text("Whack 15 Moles and take a piece of candy",14,201);
+    
+noStroke();
+var ypos = 151;
+var xpos = -40;
+var bitheight = 77;
+
+
+fill(232, 190, 172);/// Face color
+ellipse(xpos+ (bitheight/150*191),ypos+ (bitheight/150*280),bitheight/150*85,bitheight/150*86); /// face
+
+fill(145, 70, 38);
+ellipse(xpos+ (bitheight/150*190),ypos+ (bitheight/150*251),bitheight/150*95,bitheight/150*43); ///hair
+ellipse(xpos+ (bitheight/150*149),ypos+ (bitheight/150*276),bitheight/150*31,bitheight/150*43);
+
+fill(0, 0, 0);///eyes
+ellipse(xpos+ (bitheight/150*179),ypos+ (bitheight/150*282),bitheight/150*10,bitheight/150*10);
+ellipse(xpos+ (bitheight/150*207),ypos+ (bitheight/150*282),bitheight/150*10,bitheight/150*10);
+
+fill(0,0,0);///mouth
+ellipse(xpos+ (bitheight/150*194),ypos+ (bitheight/150*306),bitheight/150*45,bitheight/150*12);
+
+fill(181, 57, 0);
+arc(xpos+ (bitheight/150*196),ypos+ (bitheight/150*286),bitheight/150*14,bitheight/150*19,60,134);
+
+
+fill(0, 0, 0);
+rect(xpos+ (bitheight/150*134),ypos+ (bitheight/150*321),bitheight/150*121,bitheight/150*79);//shirt
+
+fill(255,255,255);///logo
+rect(xpos+ (bitheight/150*154),ypos+ (bitheight/150*336),bitheight/150*9,bitheight/150*49);
+rect(xpos+ (bitheight/150*154),ypos+ (bitheight/150*336),bitheight/150*20,bitheight/150*11);
+rect(xpos+ (bitheight/150*174),ypos+ (bitheight/150*336),bitheight/150*9,bitheight/150*27);
+rect(xpos+ (bitheight/150*184),ypos+ (bitheight/150*357),bitheight/150*-23,bitheight/150*8);
+
+rect(xpos+ (bitheight/150*214),ypos+ (bitheight/150*335),bitheight/150*10,bitheight/150*50);///logo
+rect(xpos+ (bitheight/150*237),ypos+ (bitheight/150*335),bitheight/150*-37,bitheight/150*11);
+
+
+fill(255,255,255);
+rect(xpos+ (bitheight/150*180),ypos+ (bitheight/150*360),bitheight/150*-8,bitheight/150*26);
+
+
+var drawHead = function(x,y,h)//Fallou Bitmoji
+{
+    var p = h/75;
+noStroke();
+fill(71, 39, 27);
+ellipse(x+200*p,y+150*p,61*p,76*p); //head
+fill(255, 255, 255);
+
+
+arc(x+166*p,y+84*p,33*p,55*p,0,365);//leftcheeck
+arc(x+235*p,y+184*p,35*p,56*p,0,365);//rightcheek
+
+fill(15, 14, 14);
+stroke(232, 16, 16);
+rect(x+170*p,y+134*p,3*p,32,20);
+rect(x+175*p,y+125*p,3*p,42*p,16);
+rect(x+180*p,y+120*p,3*p,50*p,23);
+rect(x+185*p,y+116*p,3*p,49*p,23);//dreads
+rect(x+190*p,y+114*p,3*p,52*p,23);
+rect(x+195*p,y+112*p,3*p,43*p,23);
+rect(x+200*p,y+112*p,3*p,39*p,23);
+rect(x+205*p,y+113*p,3*p,49*p,23);
+rect(x+210*p,y+115*p,3*p,49*p,23);
+rect(x+215*p,y+118*p,3*p,49*p,23);
+rect(x+220*p,y+123*p,3*p,42*p,23);
+rect(x+225*p,y+131*p,3*p,39*p,17);
+
+fill(16, 18, 16);
+stroke(15, 1, 1);
+rect(x+180*p,y+145*p,12*p,9);
+rect(x+205*p,y+145*p,12*p,9);
+fill(2, 4, 18);//glasses
+rect(x+207*p,y+147*p,-16*p,4);
+stroke(18, 1, 1);
+fill(10, 1, 1);
+rect(x+181*p,y+147*p,-12*p,4);
+rect(x+230*p,y+147*p,-13*p,4);
+
+fill(99, 56, 38);
+stroke(175,110,81);
+bezier(x+200*p,y+150*p,x+195*p,y+171*p,x+219*p,y+159*p,x+195*p,y+163*p);//nose
+
+fill(99, 56, 38);
+arc(x+201*p,y+169*p,25*p,26*p,0,180);//mouth
+
+fill(0, 9, 255);
+noStroke();
+};
+var drawBody= function(x,y,h)
+{
+var p = h/75;
+rect(x+175*p,y+190*p,53*p,86*p);//shirt
+fill(54, 11, 11);
+rect(x+194*p,y+183*p,13*p,9*p);
+fill(0, 9 ,255);
+ellipse(x+173*p,y+202*p,26*p,27*p);
+ellipse(x+229*p,y+203*p,26*p,27*p);
+
+fill(255, 0, 0);//initials
+textSize(18);
+text("FB",x+189*p,y+206*p,237*p,259*p);
+};
+
+var drawPerson = function(x,y,ratio) {
+    drawHead(x,y,ratio);
+    drawBody(x,y,ratio);
+};
+
+drawPerson(223,207,50);
+
+
+    startButton.draw();
+};
+var moleX = 87;
+var moleY = 95;
+var level1Time = 0;
+
+var drawHead = function(moleX,moleY)
+{
+    noStroke();
+    fill(125, 93, 43);
+    ellipse(moleX, moleY, 60, 60); // face
+    fill(255, 237, 209);
+    ellipse(moleX, moleY+10, 33, 28); 
+    fill(0, 0, 0);
+    ellipse(moleX-10, moleY-15, 10, 10); // eyes
+    ellipse(moleX+10, moleY-15, 10, 10);
+    ellipse(moleX, moleY-5, 10, 10); // nose
+    ellipse(moleX, moleY+10, 20, 5); // mouth
+
+};
+var drawMole = function(moleX,moleY) {
+    drawHead(moleX,moleY);
+};
+
+var level1 = function(){
+
+    //level 1 code
+    fill(0, 0, 0);
+
+    level1Time++;
+
+    background(33, 102, 52);
+    fill(255, 0, 0);
+    text("Score: " + score,50,50);
+
+    fill(0, 0, 0);
+    ellipse(200, 200, 100, 30); // holes!
+    ellipse(70, 130, 100, 30);
+    ellipse(324, 350, 100, 30);
+    ellipse(324, 267, 100, 30);
+    ellipse(191, 350, 100, 30);
+    ellipse(71, 350, 100, 30);
+    ellipse(323, 197, 100, 30);
+    ellipse(198, 271, 100, 30);
+    ellipse(74, 271, 100, 30);
+    ellipse(73, 202, 100, 30);
+    ellipse(198, 129, 100, 30);
+    ellipse(321, 128, 100, 30);
+    if (score === 15){
+    fill(255, 0, 0);
+ text("YOU WON HAVE SOME CANDY",65,157);   
+}    
+    spot_choice = floor(random(0, xSpots.length));
+    
+    drawMole(xSpots[spot_choice], ySpots[spot_choice]);
+    
+    frameRate(1.5);
+    
+    noStroke();
+var ypos = -114;
+var xpos = 96;
+var bitheight = 77;
+
+
+fill(232, 190, 172);/// Face color
+ellipse(xpos+ (bitheight/150*191),ypos+ (bitheight/150*280),bitheight/150*85,bitheight/150*86); /// face
+
+fill(145, 70, 38);
+ellipse(xpos+ (bitheight/150*190),ypos+ (bitheight/150*251),bitheight/150*95,bitheight/150*43); ///hair
+ellipse(xpos+ (bitheight/150*149),ypos+ (bitheight/150*276),bitheight/150*31,bitheight/150*43);
+
+fill(0, 0, 0);///eyes
+ellipse(xpos+ (bitheight/150*179),ypos+ (bitheight/150*282),bitheight/150*10,bitheight/150*10);
+ellipse(xpos+ (bitheight/150*207),ypos+ (bitheight/150*282),bitheight/150*10,bitheight/150*10);
+
+fill(0,0,0);///mouth
+ellipse(xpos+ (bitheight/150*194),ypos+ (bitheight/150*306),bitheight/150*45,bitheight/150*12);
+
+fill(181, 57, 0);
+arc(xpos+ (bitheight/150*196),ypos+ (bitheight/150*286),bitheight/150*14,bitheight/150*19,60,134);
+
+
+fill(0, 0, 0);
+rect(xpos+ (bitheight/150*134),ypos+ (bitheight/150*321),bitheight/150*121,bitheight/150*79);//shirt
+
+fill(255,255,255);///logo
+rect(xpos+ (bitheight/150*154),ypos+ (bitheight/150*336),bitheight/150*9,bitheight/150*49);
+rect(xpos+ (bitheight/150*154),ypos+ (bitheight/150*336),bitheight/150*20,bitheight/150*11);
+rect(xpos+ (bitheight/150*174),ypos+ (bitheight/150*336),bitheight/150*9,bitheight/150*27);
+rect(xpos+ (bitheight/150*184),ypos+ (bitheight/150*357),bitheight/150*-23,bitheight/150*8);
+
+rect(xpos+ (bitheight/150*214),ypos+ (bitheight/150*335),bitheight/150*10,bitheight/150*50);///logo
+rect(xpos+ (bitheight/150*237),ypos+ (bitheight/150*335),bitheight/150*-37,bitheight/150*11);
+
+
+fill(255,255,255);
+rect(xpos+ (bitheight/150*180),ypos+ (bitheight/150*360),bitheight/150*-8,bitheight/150*26);
+
+var drawHead = function(x,y,h)//Fallou Bitmoji
+{
+    var p = h/75;
+noStroke();
+fill(71, 39, 27);
+ellipse(x+200*p,y+150*p,61*p,76*p); //head
+fill(255, 255, 255);
+
+
+arc(x+166*p,y+84*p,33*p,55*p,0,365);//leftcheeck
+arc(x+235*p,y+184*p,35*p,56*p,0,365);//rightcheek
+
+fill(15, 14, 14);
+stroke(232, 16, 16);
+rect(x+170*p,y+134*p,3*p,32,20);
+rect(x+175*p,y+125*p,3*p,42*p,16);
+rect(x+180*p,y+120*p,3*p,50*p,23);
+rect(x+185*p,y+116*p,3*p,49*p,23);//dreads
+rect(x+190*p,y+114*p,3*p,52*p,23);
+rect(x+195*p,y+112*p,3*p,43*p,23);
+rect(x+200*p,y+112*p,3*p,39*p,23);
+rect(x+205*p,y+113*p,3*p,49*p,23);
+rect(x+210*p,y+115*p,3*p,49*p,23);
+rect(x+215*p,y+118*p,3*p,49*p,23);
+rect(x+220*p,y+123*p,3*p,42*p,23);
+rect(x+225*p,y+131*p,3*p,39*p,17);
+
+fill(16, 18, 16);
+stroke(15, 1, 1);
+rect(x+180*p,y+145*p,12*p,9);
+rect(x+205*p,y+145*p,12*p,9);
+fill(2, 4, 18);//glasses
+rect(x+207*p,y+147*p,-16*p,4);
+stroke(18, 1, 1);
+fill(10, 1, 1);
+rect(x+181*p,y+147*p,-12*p,4);
+rect(x+230*p,y+147*p,-13*p,4);
+
+fill(99, 56, 38);
+stroke(175,110,81);
+bezier(x+200*p,y+150*p,x+195*p,y+171*p,x+219*p,y+159*p,x+195*p,y+163*p);//nose
+
+fill(99, 56, 38);
+arc(x+201*p,y+169*p,25*p,26*p,0,180);//mouth
+
+fill(0, 9, 255);
+noStroke();
+};
+var drawBody= function(x,y,h)
+{
+var p = h/75;
+rect(x+175*p,y+190*p,53*p,86*p);//shirt
+fill(54, 11, 11);
+rect(x+194*p,y+183*p,13*p,9*p);
+fill(0, 9 ,255);
+ellipse(x+173*p,y+202*p,26*p,27*p);
+ellipse(x+229*p,y+203*p,26*p,27*p);
+
+fill(255, 0, 0);//initials
+textSize(18);
+text("FB",x+189*p,y+206*p,237*p,259*p);
+};
+
+var drawPerson = function(x,y,ratio) {
+    drawHead(x,y,ratio);
+    drawBody(x,y,ratio);
+};
+
+drawPerson(217,-52,38);//Fallou bitmoji inside game
+
+};
+
+mouseClicked = function() {
+    if(CurrentScene ===1){
+        startButton.handleMouseClick();
+    } else if (CurrentScene === 2){
+        if (mouseX > xSpots[spot_choice] - 30 &&
+            mouseX < xSpots[spot_choice] + 30 &&
+            mouseY > ySpots[spot_choice] - 30&&
+            mouseY < ySpots[spot_choice] + 30
+        ) {
+        score++;
+        }   
+    }
+};
+
+
+draw = function() {
+    background(13, 110, 67);
+    if(CurrentScene === 1){
+        splash();   
+    } else if (CurrentScene === 2){
+        level1();   
+    }
+};
+
 
